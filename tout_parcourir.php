@@ -1,9 +1,14 @@
+
+
 <?php
 // Connexion à la base de données
 $host = 'localhost';
 $dbname = 'agora_francia';
 $username = 'root'; // Remplacez par votre nom d'utilisateur
 $password = 'root'; // Remplacez par votre mot de passe
+require_once 'config.php';
+require_once './compenant/header.php';
+require_once './compenant/footer.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -38,20 +43,7 @@ foreach ($articles as $article) {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+    <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <div class="intro">
                 <h2>Tout Parcourir</h2>
@@ -81,9 +73,7 @@ foreach ($articles as $article) {
                 <?php endif; ?>
             </div>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

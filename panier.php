@@ -1,4 +1,9 @@
 <?php
+session_start();
+require_once 'config.php';
+require_once 'compenant/header.php'; // Inclure le fichier header.php
+require_once 'compenant/footer.php'; // Inclure le fichier footer.php
+
 // Connexion à la base de données
 $host = 'localhost';
 $dbname = 'agora_francia';
@@ -52,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
 if (isset($_GET['message'])) {
     echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -65,20 +69,7 @@ if (isset($_GET['message'])) {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+        <?php render_header('Votre Panier'); ?>
         <section class="main-section">
             <h2>Votre Panier</h2>
             <?php if (count($articles) > 0): ?>
@@ -103,9 +94,7 @@ if (isset($_GET['message'])) {
                 <p>Votre panier est vide.</p>
             <?php endif; ?>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

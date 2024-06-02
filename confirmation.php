@@ -1,3 +1,9 @@
+<?php
+require_once 'config.php'; // Si nécessaire pour la configuration globale
+require_once 'compenant/header.php'; // Inclure le fichier header.php
+require_once 'compenant/footer.php'; // Inclure le fichier footer.php
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,20 +14,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+        <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <h2>Confirmation d'achat</h2>
             <?php if (isset($_GET['message'])): ?>
@@ -31,9 +24,7 @@
             <?php endif; ?>
             <button onclick="window.location.href='index.php'">Retour à l'accueil</button>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

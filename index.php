@@ -1,6 +1,7 @@
 <?php
-// Inclure le fichier de configuration
 require_once 'config.php';
+require_once './compenant/header.php';
+require_once './compenant/footer.php';
 
 // Récupérer les articles en vente de la base de données
 $sql = "SELECT * FROM items WHERE en_vente = 1";
@@ -23,24 +24,11 @@ $conn->close();
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <a href="tout_parcourir.php"><button>Tout Parcourir</button></a>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+        <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <div class="intro">
                 <h2>Bienvenue sur Agora Francia</h2>
-                <p>Découvrez notre plateforme de vente en ligne où vous pouvez acheter, négocier, et enchérir sur une variété d'articles.</p>
+                <p>Découvrez notre plateforme de vente en ligne où vous pouvez acheter, négocier, et enchérir sur une variété d\'articles.</p>
             </div>
             <div class="selection-du-jour">
                 <h2>Sélection du jour</h2>
@@ -49,7 +37,7 @@ $conn->close();
                     // Afficher les images des articles en vente dans le carousel
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            echo '<div><img src="' . $row['photo_principale'] . '" alt="' . $row['nom'] . '"></div>';
+                            echo '<div><img src="' . htmlspecialchars($row['photo_principale']) . '" alt="' . htmlspecialchars($row['nom']) . '"></div>';
                         }
                     }
                     ?>
@@ -59,13 +47,11 @@ $conn->close();
                 <h2>Contactez-nous</h2>
                 <p>Email: contact@agorafrancia.com</p>
                 <p>Téléphone: +33 1 23 45 67 89</p>
-                <p>Adresse: 10 rue sextus michel, Paris, France</p>
+                <p>Adresse: 10 rue Sextus Michel, Paris, France</p>
             </div>
             <div id="map"></div>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

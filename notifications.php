@@ -18,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 
+require_once 'config.php'; // Si nécessaire pour la configuration globale
+require_once 'compenant/header.php'; // Inclure le fichier header.php
+require_once 'compenant/footer.php'; // Inclure le fichier footer.php
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,17 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Notifications</h1>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <a href="tout_parcourir.php"><button>Tout Parcourir</button></a>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-            <button onclick="window.location.href='logout.php'">Se Déconnecter</button>
-        </nav>
+        <?php render_header('Notifications'); ?>
         <section class="main-section">
             <h2>Notifications</h2>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -49,9 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Afficher les notifications de l'utilisateur si vous en avez -->
             <!-- Vous pouvez ajouter ici d'autres éléments de notification ou d'alerte -->
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

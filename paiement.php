@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once 'config.php';
+require_once 'compenant/header.php'; // Inclure le fichier header.php
+require_once 'compenant/footer.php'; // Inclure le fichier footer.php
 
 // Rediriger si l'utilisateur n'est pas connecté
 if (!isset($_SESSION['user_id'])) {
@@ -38,20 +40,7 @@ $stmt->close();
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+        <?php render_header('Paiement'); ?>
         <section class="main-section">
             <h3>Montant Total du panier : <?php echo htmlspecialchars($montant); ?> €</h3>
             <h3>Informations de Livraison</h3>
@@ -158,9 +147,7 @@ $stmt->close();
             $conn->close();
             ?>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

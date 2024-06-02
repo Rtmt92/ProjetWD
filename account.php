@@ -41,21 +41,7 @@ $conn->close();
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Mon Compte</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <a href="tout_parcourir.php"><button>Tout Parcourir</button></a>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-            <button onclick="window.location.href='logout.php'">Se Déconnecter</button>
-        </nav>
+    <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <h2>Bienvenue, <?php echo htmlspecialchars($user['pseudo']); ?>!</h2>
             <div class="profile-info">
@@ -90,9 +76,7 @@ $conn->close();
                 <button type="submit">Mettre à jour les informations de paiement</button>
             </form>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

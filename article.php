@@ -4,6 +4,9 @@ $host = 'localhost';
 $dbname = 'agora_francia';
 $username = 'root'; // Remplacez par votre nom d'utilisateur
 $password = 'root'; // Remplacez par votre mot de passe
+require_once 'config.php'; // Assurez-vous que ce fichier existe et configure la connexion à la base de données
+require_once 'compenant/header.php'; // Inclure le fichier header.php
+require_once 'compenant/footer.php'; // Inclure le fichier footer.php
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -44,20 +47,7 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+        <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <div class="article-details">
                 <h2><?php echo htmlspecialchars($article['nom']); ?></h2>
@@ -69,9 +59,7 @@ if (isset($_GET['id'])) {
                 <button onclick="window.location.href='ajouter_panier.php?id_item=<?php echo $article['id_objet']; ?>'">Ajouter au panier</button>
             </div>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

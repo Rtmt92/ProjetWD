@@ -1,11 +1,12 @@
 <?php
-// payer.php
 
-// Connexion à la base de données
 $host = 'localhost';
 $dbname = 'agora_francia';
 $username = 'root';
 $password = 'root';
+require_once 'config.php';
+require_once './compenant/header.php';
+require_once './compenant/footer.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -57,20 +58,7 @@ if ($stmt->rowCount() > 0) {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Agora Francia</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <button onclick="window.location.href='tout_parcourir.php'">Tout Parcourir</button>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button onclick="window.location.href='panier.php'">Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-        </nav>
+    <?php render_header('Agora Francia'); ?>
         <section class="main-section">
             <h2>Récapitulatif de votre achat</h2>
             <div class="articles">
@@ -110,9 +98,7 @@ if ($stmt->rowCount() > 0) {
                 <button type="submit" name="payer">Acheter</button>
             </form>
         </section>
-        <footer>
-            &copy; 2024 Agora Francia. Tous droits réservés.
-        </footer>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once 'config.php';
+require_once 'header.php';
+require_once 'footer.php';
 
 // Activer l'affichage des erreurs
 ini_set('display_errors', 1);
@@ -84,21 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <h1>Ajouter un objet</h1>
-            <div class="logo">
-                <div class="cart"></div>
-                <div class="text">AGORA</div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <button onclick="window.location.href='index.php'">Accueil</button>
-            <a href="tout_parcourir.php"><button>Tout Parcourir</button></a>
-            <button onclick="window.location.href='notifications.php'">Notifications</button>
-            <button>Panier</button>
-            <button onclick="window.location.href='account.php'">Votre Compte</button>
-            <button onclick="window.location.href='logout.php'">Se Déconnecter</button>
-        </nav>
+        <?php render_header('Ajouter un objet'); ?>
         <section class="main-section">
             <h2>Mettre en ligne un nouvel objet</h2>
             <form action="ajouter_objet.php" method="POST" enctype="multipart/form-data">
@@ -126,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo '<option value="' . $row['id.objet'] . '">' . htmlspecialchars($row['nom']) . '</option>';
+                            echo '<option value="' . $row['id'] . '">' . htmlspecialchars($row['nom']) . '</option>';
                         }
                     } else {
                         echo '<option value="">Aucune catégorie disponible</option>';
@@ -147,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit">Ajouter l'objet</button>
             </form>
         </section>
+        <?php render_footer(); ?>
     </div>
 </body>
 </html>
